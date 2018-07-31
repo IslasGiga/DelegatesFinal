@@ -8,16 +8,11 @@
 
 import UIKit
 
-
-
-
 class SecondViewController: UIViewController {
     @IBOutlet weak var lblText: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +23,7 @@ class SecondViewController: UIViewController {
 
 //Third part
 extension SecondViewController: FirstViewControllerDelegate{
-    func send(text: String) {
+    func didSendText(_ text: String) {
         self.lblText.text = text
     }
 }

@@ -8,10 +8,9 @@
 
 import UIKit
 
-//Second step
-protocol FirstViewControllerDelegate{
-    
-    func send(text: String)
+//First step - Create a delegate protocol
+protocol FirstViewControllerDelegate: AnyObject{
+    func didSendText(_ text: String)
 }
 
 class FirstViewController: UIViewController {
@@ -19,8 +18,8 @@ class FirstViewController: UIViewController {
     
     @IBOutlet weak var lblText: UITextField!
     
-    //Fourth part
-    var delegate: FirstViewControllerDelegate?
+    //Second step
+    weak var delegate: FirstViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +32,10 @@ class FirstViewController: UIViewController {
     }
     
     @IBAction func goToTheSecondViewController(_ sender: UIButton) {
-        //First step
+        //Fourth step
         performSegue(withIdentifier: "mySegue", sender: self)
         if delegate != nil{
-            delegate?.send(text: lblText.text!)
+            delegate?.didSendText(lblText.text!)
         }
     }
     
@@ -47,7 +46,6 @@ class FirstViewController: UIViewController {
         //Fifth part
         let vc = segue.destination as! SecondViewController
         delegate = vc
-        
     }
 
 
